@@ -205,4 +205,5 @@ resource "aws_autoscaling_group" "prem_ec2_asg" {
 
 output "alb_dns_name" {
   value = aws_lb.prem_app_lb.dns_name
+  description = "ALB URL: "
 }
