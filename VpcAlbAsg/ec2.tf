@@ -110,7 +110,7 @@ resource "aws_lb" "prem_app_lb" {
   load_balancer_type = "application"
   internal           = false
   security_groups    = [aws_security_group.prem_alb_sg.id]
-  subnets            = aws_subnet.public_subnet[*].id
+  subnets            = aws_subnet.prem_pub_snet[*].id
   depends_on         = [aws_internet_gateway.prem_igw]
 }
 
