@@ -168,7 +168,7 @@ resource "aws_security_group" "prem_ec2_sg" {
 resource "aws_launch_template" "prem_ec2_launch_template" {
   name = "prem-web-server"
 
-  image_id      = "ami-013e83f579886baeb" #Copy the ami id from aws console
+  image_id      = "ami-0e86e20dae9224db8" #ubuntu
   instance_type = "t2.micro"
 
   network_interfaces {
