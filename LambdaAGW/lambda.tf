@@ -18,7 +18,11 @@ data "archive_file" "prem_lmd_zip"{
     source_file = "lambda/premTfLmd.py"
     output_path = "lamdba/premTfLmd.zip"
 }
-
+data "archive_file" "lambda_zip_file" {
+  type        = "zip"
+  source_file = "lambda/index.js"
+  output_path = "lambda/index.zip"
+}
 
 resource "aws_iam_role" "prem_lmd_x_role" {
   name = "prem-lmd-x-role"
@@ -32,9 +36,9 @@ resource "aws_iam_role_policy_attachment" "prem_lmd_x_policy_attach" {
 
 resource "aws_lambda_function" "prem_tf_lmd" {
   function_name = "prem-tf-api-lmd"
-  filename = "lambda/premTfLmd.py"
+  filename = "lambda/premTfLmd.zip"
   role = aws_iam_role.prem_lmd_x_role.arn
-  handler = "index.handler"
+  handler = "premTfLmd.lambda_handler"
   runtime = "python3.12"
   timeout = 30
   source_code_hash = data.archive_file.prem_lmd_zip.output_base64sha256
