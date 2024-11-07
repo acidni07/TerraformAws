@@ -85,11 +85,9 @@ resource "aws_api_gateway_deployment" "prem_apigw_deploy" {
       aws_api_gateway_integration.prem_apigw_lmd_integra.id
     ] ) )
   }
-x
   lifecycle {
     create_before_destroy = true
   }
-  
   depends_on = [
     aws_api_gateway_integration.prem_apigw_lmd_integra
   ]
