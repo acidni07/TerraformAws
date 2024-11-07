@@ -18,11 +18,6 @@ data "archive_file" "prem_lmd_zip"{
     source_file = "lambda/premTfLmd.py"
     output_path = "lamdba/premTfLmd.zip"
 }
-data "archive_file" "lambda_zip_file" {
-  type        = "zip"
-  source_file = "lambda/index.js"
-  output_path = "lambda/index.zip"
-}
 
 resource "aws_iam_role" "prem_lmd_x_role" {
   name = "prem-lmd-x-role"
