@@ -29,6 +29,7 @@ resource "aws_iam_role_policy_attachment" "prem_lmd_x_policy_attach" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
+
 resource "aws_lambda_function" "prem_tf_lmd" {
   function_name = "prem-tf-api-lmd"
   filename = "lambda/premTfLmd.zip"
@@ -61,7 +62,7 @@ resource "aws_api_gateway_resource" "prem_apigw_rest_api_resource" {
 resource "aws_api_gateway_method" "prem_apigw_rest_api_method" {
   resource_id = aws_api_gateway_resource.prem_apigw_rest_api_resource.id
   rest_api_id = aws_api_gateway_rest_api.prem_apigw_rest_api.id
-  http_method = "POST"
+  http_method = "GET"
   authorization = "NONE"
 }
 
@@ -69,7 +70,7 @@ resource "aws_api_gateway_integration" "prem_apigw_lmd_integra" {
   http_method = aws_api_gateway_method.prem_apigw_rest_api_method.http_method
   resource_id = aws_api_gateway_resource.prem_apigw_rest_api_resource.id
   rest_api_id = aws_api_gateway_rest_api.prem_apigw_rest_api.id
-  integration_http_method = "POST"
+  integration_http_method = "GET"
   type = "AWS_PROXY"
   uri = aws_lambda_function.prem_tf_lmd.invoke_arn
 }
@@ -84,7 +85,7 @@ resource "aws_api_gateway_deployment" "prem_apigw_deploy" {
       aws_api_gateway_integration.prem_apigw_lmd_integra.id
     ] ) )
   }
-
+x
   lifecycle {
     create_before_destroy = true
   }
