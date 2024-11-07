@@ -27,7 +27,7 @@ resource "aws_iam_role" "prem_lmd_x_role" {
 
 resource "aws_iam_role_policy_attachment" "prem_lmd_x_policy_attach" {
   role = aws_iam_role.prem_lmd_x_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AwsLambdaBasicExecutionRole"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 resource "aws_lambda_function" "prem_tf_lmd" {
