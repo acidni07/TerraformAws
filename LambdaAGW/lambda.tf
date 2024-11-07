@@ -16,7 +16,7 @@ assign a role to API GW to invoke the lambda function
 data "archive_file" "prem_lmd_zip"{
     type = "zip"
     source_file = "lambda/premTfLmd.py"
-    output_path = "lamdba/premTfLmd.zip"
+    output_path = "lambda/premTfLmd.zip"
 }
 
 resource "aws_iam_role" "prem_lmd_x_role" {
