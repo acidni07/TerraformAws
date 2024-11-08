@@ -8,6 +8,6 @@ def lambda_handler(event, context):
         "headers": {
             "content-type": "application/json"
         },
-        "body":' "Message from " + myEnvVar + "."
+        "body": "Message from " + myEnvVar + "."
     }
     return res
