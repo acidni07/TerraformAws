@@ -98,8 +98,9 @@ resource "aws_lambda_permission" "prem_apigw_lmd_permi" {
   function_name = aws_lambda_function.prem_tf_lmd.function_name
   principal = "apigateway.amazonaws.com"
   statement_id = "AllowExecutionFromAPIGateway"
-  source_arn = "${aws_api_gateway_rest_api.prem_apigw_rest_api.execution_arn}/*/*/*"
-}
+  //source_arn = "${aws_api_gateway_rest_api.prem_apigw_rest_api.execution_arn}/*/*/*"
+  source_arn = "${aws_api_gateway_rest_api.prem_apigw_rest_api.execution_arn}/*/${aws_api_gateway_method.prem_apigw_rest_api_method.http_method}${aws_api_gateway_resource.prem_apigw_rest_api_resource.path_part}"
+  }
 
 output "invoke_url" {
   value = aws_api_gateway_deployment.prem_apigw_deploy.invoke_url
