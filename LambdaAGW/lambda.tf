@@ -70,7 +70,7 @@ resource "aws_api_gateway_integration" "prem_apigw_lmd_integra" {
   http_method = aws_api_gateway_method.prem_apigw_rest_api_method.http_method
   resource_id = aws_api_gateway_resource.prem_apigw_rest_api_resource.id
   rest_api_id = aws_api_gateway_rest_api.prem_apigw_rest_api.id
-  integration_http_method = "GET"
+  integration_http_method = "POST"
   type = "AWS_PROXY"
   uri = aws_lambda_function.prem_tf_lmd.invoke_arn
 }
